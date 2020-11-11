@@ -10,14 +10,14 @@
         ></v-text-field>
       </v-col>
       <v-col>
-        <div class="weather__wrap">
+        <div class="weather__wrap" v-if="data.main">
           <div class="location__box">
-            <div class="date">Mittwoch, 11. November 2020</div>
-            <div class="location">Chur, CH</div>
+            <div class="date">{{ dateBuilder() }}</div>
+            <div class="location">{{ data.name }}, {{ data.sys.country }}</div>
           </div>
           <div class="weather__box">
-            <div class="temp">6°C</div>
-            <div class="weather">klar</div>
+            <div class="temp">{{ Math.round(data.main.temp) }}°C</div>
+            <div class="weather">{{ data.weather[0].description }}</div>
           </div>
         </div>
       </v-col>
@@ -50,6 +50,17 @@ export default {
     setResults (results) {
       this.data = results
     },
+    dateBuilder () {
+      let d = new Date()
+      let months = this.$store.state.months
+      let days = this.$store.state.days
+      let day = days[d.getDay()]
+      let date = d.getDate()
+      let month = months[d.getMonth()]
+      let year = d.getFullYear()
+
+      return `${day} ${date}. ${month} ${year}`
+    }
   }
 }
 </script>

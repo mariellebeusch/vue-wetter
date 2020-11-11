@@ -1,8 +1,5 @@
 <template>
   <div class="home">
-      <input v-model="forecast">
-      <br>
-      {{ forecast }}
 
   </div>
 </template>
