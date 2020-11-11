@@ -2,8 +2,7 @@
   <v-app>
     <v-app-bar
       app
-      color="grey"
-      dark
+      light
     >
       <div>
         Wetter App
